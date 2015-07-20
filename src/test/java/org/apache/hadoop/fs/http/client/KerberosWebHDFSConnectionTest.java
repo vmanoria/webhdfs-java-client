@@ -15,13 +15,20 @@ public class KerberosWebHDFSConnectionTest {
 	KerberosWebHDFSConnection conn = null;
 	@Before
 	public void setUp() throws Exception {
-		String realm = System.getProperty("test.realm");
+/*		String realm = System.getProperty("test.realm");
 		String kdc = System.getProperty("test.kdc");
 		String principal = System.getProperty("test.principal");
 		String password = System.getProperty("test.password");
 		String webhdfs = System.getProperty("test.webhdfs");
-		System.setProperty("java.security.krb5.realm", realm);
-		System.setProperty("java.security.krb5.kdc", kdc);
+*/
+		//String realm = System.getProperty("test.realm");
+		//String kdc = System.getProperty("test.kdc");
+		String principal = "biblumix";
+		String password = "a0~9fGkX@gqu";
+		String webhdfs = "https://bi-hadoop-prod-2326.services.dal.bluemix.net:8443/gateway/default/webhdfs/v1/";
+
+		//System.setProperty("java.security.krb5.realm", realm);
+		//System.setProperty("java.security.krb5.kdc", kdc);
 		conn = new KerberosWebHDFSConnection(webhdfs, principal, password);
 	}
 
@@ -38,14 +45,14 @@ public class KerberosWebHDFSConnectionTest {
 
 	@Test
 	public void listStatus() throws MalformedURLException, IOException, AuthenticationException {
-		String path= "user/test";
+		String path= "user/biblumix";
 		String json = conn.listStatus(path);
 		System.out.println(json);
 	}
 
 	@Test
 	public void open() throws MalformedURLException, IOException, AuthenticationException {
-		String path="user/test/hello.txt";
+		String path="user/biblumix/HealthCare/CloudantSyncCredentials.txt";
 		FileOutputStream os = new  FileOutputStream(new File("/tmp/downloadfromhdfs.file"));
 		String json = conn.open(path, os);
 		System.out.println(json);
@@ -55,14 +62,14 @@ public class KerberosWebHDFSConnectionTest {
 	@Test
 	public void create() throws MalformedURLException, IOException, AuthenticationException {
 		FileInputStream is = new FileInputStream(new File("/tmp/downloadfromhdfs.file"));
-		String path="/user/test/hello.uploaded.txt";
+		String path="/user/biblumix/hello.uploaded.txt";
 		String json = conn.create(path, is);
 		System.out.println(json);
 	}
 
 	@Test
 	public void delete() throws MalformedURLException, IOException, AuthenticationException {
-		String path="user/test/hello.uploaded.txt"; 
+		String path="user/biblumix/hello.uploaded.txt"; 
 		String json = conn.delete(path);
 		System.out.println(json);
 	}
