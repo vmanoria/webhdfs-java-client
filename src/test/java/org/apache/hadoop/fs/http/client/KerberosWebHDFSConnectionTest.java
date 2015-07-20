@@ -21,14 +21,14 @@ public class KerberosWebHDFSConnectionTest {
 		String password = System.getProperty("test.password");
 		String webhdfs = System.getProperty("test.webhdfs");
 */
-		//String realm = System.getProperty("test.realm");
-		//String kdc = System.getProperty("test.kdc");
+		String realm = "EXAMPLE.COM";
+		String kdc = "/etc/security/keytabs/spnego.service.keytab";
 		String principal = "biblumix";
 		String password = "a0~9fGkX@gqu";
 		String webhdfs = "https://bi-hadoop-prod-2326.services.dal.bluemix.net:8443/gateway/default/webhdfs/v1";
 
-		//System.setProperty("java.security.krb5.realm", realm);
-		//System.setProperty("java.security.krb5.kdc", kdc);
+		System.setProperty("java.security.krb5.realm", realm);
+		System.setProperty("java.security.krb5.kdc", kdc);
 		conn = new KerberosWebHDFSConnection(webhdfs, principal, password);
 	}
 
