@@ -25,7 +25,7 @@ public class KerberosWebHDFSConnectionTest {
 		//String kdc = System.getProperty("test.kdc");
 		String principal = "biblumix";
 		String password = "a0~9fGkX@gqu";
-		String webhdfs = "https://bi-hadoop-prod-2326.services.dal.bluemix.net:8443/gateway/default/webhdfs/v1/";
+		String webhdfs = "https://bi-hadoop-prod-2326.services.dal.bluemix.net:8443/gateway/default/webhdfs/v1";
 
 		//System.setProperty("java.security.krb5.realm", realm);
 		//System.setProperty("java.security.krb5.kdc", kdc);
@@ -45,15 +45,15 @@ public class KerberosWebHDFSConnectionTest {
 
 	@Test
 	public void listStatus() throws MalformedURLException, IOException, AuthenticationException {
-		String path= "user/biblumix";
+		String path= "/user/biblumix";
 		String json = conn.listStatus(path);
 		System.out.println(json);
 	}
 
 	@Test
 	public void open() throws MalformedURLException, IOException, AuthenticationException {
-		String path="user/biblumix/HealthCare/CloudantSyncCredentials.txt";
-		FileOutputStream os = new  FileOutputStream(new File("/tmp/downloadfromhdfs.file"));
+		String path="/user/biblumix/HealthCare/CloudantSyncCredentials.txt";
+		FileOutputStream os = new  FileOutputStream(new File("F:/BigInsights On Cloud/BI4/demodata/downloadfromhdfs.file"));
 		String json = conn.open(path, os);
 		System.out.println(json);
 	}
@@ -61,7 +61,7 @@ public class KerberosWebHDFSConnectionTest {
 	
 	@Test
 	public void create() throws MalformedURLException, IOException, AuthenticationException {
-		FileInputStream is = new FileInputStream(new File("/tmp/downloadfromhdfs.file"));
+		FileInputStream is = new FileInputStream(new File("F:/BigInsights On Cloud/BI4/demodata/downloadfromhdfs.file"));
 		String path="/user/biblumix/hello.uploaded.txt";
 		String json = conn.create(path, is);
 		System.out.println(json);
