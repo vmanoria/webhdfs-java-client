@@ -14,18 +14,18 @@ public class WebHDFSConnectionFactory {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
 	/** The default host to connect to */
-	public static final String DEFAULT_HOST = "localhost";
+	public static final String DEFAULT_HOST = "bi-hadoop-prod-2326.services.dal.bluemix.net";
 
 	/** The default port */
-	public static final int DEFAULT_PORT = 14000;
+	public static final int DEFAULT_PORT = 8443;
 
 	/** The default username */
-	public static final String DEFAULT_USERNAME = "zen";
+	public static final String DEFAULT_USERNAME = "biblumix";
 
 	/** The default username */
-	public static final String DEFAULT_PASSWORD = "abc123";
+	public static final String DEFAULT_PASSWORD = "a0~9fGkX@gqu";
 
-	public static final String DEFAULT_PROTOCOL = "http://";
+	public static final String DEFAULT_PROTOCOL = "https://";
 
 	public static enum AuthenticationType {
 		KERBEROS, PSEUDO
@@ -59,7 +59,7 @@ public class WebHDFSConnectionFactory {
 		Assert.notNull(authenticationType,
 				"Property <authenticationType> must not be null");
 
-		String httpfsUrl = DEFAULT_PROTOCOL + host + ":" + port;
+		String httpfsUrl = DEFAULT_PROTOCOL + host + ":" + port + "/gateway/default/webhdfs/v1/";
 		if (webHDFSConnection == null) {
 			if (authenticationType.equalsIgnoreCase(AuthenticationType.KERBEROS
 					.name())) {
